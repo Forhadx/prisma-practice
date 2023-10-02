@@ -35,6 +35,61 @@ app.delete("/:id", async (req, res) => {
   res.json(newUser);
 });
 
+app.post("/add-house", async (req, res) => {
+  const newHouse = await prisma.house.createMany({ data: req.body });
+  res.json(newHouse);
+});
+
+app.get("/house", async (req, res) => {
+  const allHouses = await prisma.house.findMany({
+    include: {
+      owner: true,
+      buildBy: true,
+    },
+  });
+  res.json(allHouses);
+});
+
+app.get("/single-house/:houseId", async (req, res) => {
+  const singleHouse = await prisma.house.findUnique({
+    where: {
+      id: req.params.houseId,
+    },
+    include: {
+      owner: true,
+      buildBy: true,
+    },
+  });
+  res.json(singleHouse);
+});
+
+app.get("/house-filter", async (req, res) => {
+  const allHouses = await prisma.house.findMany({
+    where: {
+      wifiPassword: {
+        not: null,
+      },
+      owner: {
+        age: {
+          gte: 20,
+        },
+      },
+    },
+    orderBy: [
+      {
+        owner: {
+          firstName: "desc",
+        },
+      },
+    ],
+    include: {
+      owner: true,
+      buildBy: true,
+    },
+  });
+  res.json(allHouses);
+});
+
 app.listen(5001, () => {
   console.log("server listening on port: 5001");
 });

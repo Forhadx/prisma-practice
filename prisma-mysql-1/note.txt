@@ -1,0 +1,14 @@
+## install prisma
+
+        $ yarn add prisma
+        $ npx prisma init
+        $ yarn add @prisma/client
+
+        
+        // after create model use this cmd
+        $ yarn prisma generate 
+        $ yarn prisma migrate dev --name init --create-only  // create a migrate table on db
+        $ yarn prisma migrate deploy  // create tables based on model
+
+
+        $ yarn prisma format

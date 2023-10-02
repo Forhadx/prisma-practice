@@ -1,0 +1,11 @@
+GET http://localhost:5001/
+
+
+
+POST http://localhost:5001/add
+Content-Type: application/json
+{
+    "firstName": "forhad",
+    "lastName": "last",
+    "age": 26
+}

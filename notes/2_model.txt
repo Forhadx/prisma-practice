@@ -1,0 +1,14 @@
+
+
+# add simple models in schema.prisma
+
+    model User{
+        id Int @id @default(autoincrement())
+        name String 
+    }
+
+    ** user yarn or npx **
+
+    $ yarn prisma generate  // this file load the .env url and make changes
+    $ npx prisma migrate dev --name init
+    // this cmd migrate all brand new models

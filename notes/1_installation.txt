@@ -1,0 +1,22 @@
+
+## setup project
+    $ npm init -y
+    $ npm i --save-dev prisma typescript ts-node @types/node nodemon express
+    $ npx tsc --init
+
+
+# prisma installation
+    // setup prisma with datasource
+    // - this will create  schema.prisma file
+
+    $  npx prisma init --datasource-provider postgresql
+
+
+    //  make format of prisma file code 
+        $ yarn  prisma format
+                or
+        $ npx prisma format
+
+
+# add db at .evn
+    DATABASE_URL="postgresql://postgres:1234@localhost:5432/kyle_test

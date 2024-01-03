@@ -19,4 +19,6 @@
 
 
 # add db at .evn
-    DATABASE_URL="postgresql://postgres:1234@localhost:5432/kyle_test
+    DATABASE_URL="postgresql://postgres:1234@localhost:5432/kyle_test"
+
+

@@ -8,7 +8,11 @@
     }
 
     ** user yarn or npx **
+    $ npx prisma migrate dev --name init  // this cmd migrate all brand new models
 
-    $ yarn prisma generate  // this file load the .env url and make changes
-    $ npx prisma migrate dev --name init
-    // this cmd migrate all brand new models
+
+# installation prisma for code
+    $ npm i @prisma/client
+
+    $ yarn prisma generate  // generate all prisma code where needed
+

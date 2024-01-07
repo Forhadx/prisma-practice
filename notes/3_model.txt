@@ -1,0 +1,83 @@
+
+#============= model example
+    model User{
+        id    Int       @id @default(autoincrement())
+        name  String 
+    }
+
+
+    field name: id, name ..
+    data type : Int, String...
+    attributes: @id @default ... 
+
+
+
+
+#============= data type
+    Int 
+    BigInt
+
+    Float
+    Decimal
+
+    String
+    Boolean
+
+    DateTime
+
+    Bytes   // file data
+    Json    // postgresql support this
+    Unsupported("")  // not supported
+    
+    Another_Model_Name  // indicate any model
+
+
+    //== tips: que means this field is optional
+
+        String?
+        model?
+
+
+
+
+#============= attributes
+    @id
+    @unique
+
+    @default(now()) // take current time
+    @updatedAt      // take latest update time
+
+    @relation("<ref_name>", fields: [<ref_id>], references: [<opposite_ref_id>])
+    @default(autoincrement())  // Int
+    @default(uuid())   // String
+
+
+
+
+
+#============= block level attributes
+
+model User {
+  id             String          @id @default(uuid())
+  name           String
+  email          String
+  
+
+  @@unique([name, email])
+  @@index([email])
+}
+
+
+
+
+#============== ENUM
+
+model User {
+  id             String          @id @default(uuid())
+  role           Role            @default(BASIC)
+}
+
+enum Role {
+  BASIC
+  ADMIN
+}

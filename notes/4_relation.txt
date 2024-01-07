@@ -1,0 +1,78 @@
+
+
+##======= one to one relationship ============
+
+model User {
+  id             String        @id @default(uuid())
+  name           String
+  address        UserAddress?  @relation(fields: [addressId], references: [id])
+  addressId      String?       @unique
+}
+
+model UserAddress {
+  id           String  @id @default(uuid())
+  address      String
+  user         User?
+}
+
+
+
+
+
+##======= one to many relationship ==========
+
+model User {
+  id      Int     @id @default(autoincrement())
+  name    String
+  Posts   Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  rating    Float
+  author    User     @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+
+
+
+
+
+##====== many to many relationship ===========
+model Post {
+  id            String   @id @default(uuid())
+  rating        Float
+  categories Category[]
+
+}
+
+model Category{
+  id String @id @default(uuid())
+  posts Post[]
+}
+
+
+
+
+
+## ========== solve multiple references issue =========
+
+model User {
+  id             String  @id @default(uuid())
+  name           String
+  writtenPosts   Post[]  @relation("AuthorPosts")
+  favouritePosts Post[]  @relation("FavouritePost")
+}
+
+model Post {
+  id            String   @id @default(uuid())
+  rating        Float
+  author        User     @relation("AuthorPosts", fields: [authorId], references: [id])
+  authorId      String
+  favouriteBy   User     @relation("FavouritePost", fields: [favouriteById], references: [id])
+  favouriteById String
+}
+
+
+   //- if there is multiple field issue then use naming for relation

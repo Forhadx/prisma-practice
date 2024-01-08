@@ -1,0 +1,77 @@
+
+## find  functions
+    equals
+    not
+
+    in
+    notIn
+
+    lt  
+    lte
+    gt
+    gte
+
+    AND
+    OR
+    NOT
+
+    contains    // word in anywhre
+    endsWith    // word in last
+    startsWith  // word in first 
+
+
+
+-> equals
+    where: {
+        name: 'forhad'
+    }
+
+    or
+
+    where: {
+        name: {equals: 'forhad'}
+    }
+
+
+-> not
+    where: {
+        name: {not: 'forhad'}
+    }
+
+-> in
+    where: {
+        name: {in: ['forhad','jhon']}
+    }
+
+-> in
+    where: {
+        name: {notIn: ['forhad','jhon']}
+    }
+
+-> AND
+    where: {
+        name: 'forhad',
+        email: 'a@example.com'
+    }
+
+    or
+
+    where: {
+        AND: [
+            {name: 'forhad'},
+            {email: 'a@example.com'},
+        ]
+    }
+
+-> OR
+  where: {
+        OR: [
+            {name: 'forhad'},
+            {email: 'a@example.com'},
+        ]
+    }
+
+-> NOT
+    where: {
+       NOT: { name: 'forhad'},
+    }

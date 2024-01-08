@@ -10,10 +10,10 @@ app.use(express.json());
 
 async function main() {
   // create functions
-  create();
+  // create();
 
   // fetch Data
-  // fetch()
+  fetch()
 }
 
 main()

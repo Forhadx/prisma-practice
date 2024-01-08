@@ -1,0 +1,41 @@
+
+## find  functions
+    findMany()      // array
+    findUnique()    // object
+    findFirst()     // object
+
+
+    - findUnique({
+            where:{
+                email: "a@a.com"
+            }
+       })
+         -  only unique field use in
+         -  where is must
+
+
+
+
+#===== distinct
+    findMany({
+        distinct: ["name"], 
+    });
+    // only distict column of name will be shown
+
+
+
+#====== order by
+   findMany({
+        orderBy: {
+            name: "asc", // asc, desc
+        },
+    });
+
+
+
+
+#===== pagination
+    findMany({
+        take: 2,    // limit
+        skip: 1,    // skip
+    });

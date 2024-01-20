@@ -1,0 +1,29 @@
+## delete
+
+
+  delete()
+  deleteMany()
+
+  - when condition is not with unique field then use deleteMany,
+     delete only work for unique field
+
+    
+
+# delete
+  await prisma.user.delete({
+    where: {
+      email: "john3@example.com", // email is unique
+    },
+  });
+
+
+# deleteMany
+  await prisma.user.deleteMany({
+    where: {
+      name: "John4", // name isn't  unique
+    },
+  });
+
+
+# delete all
+  await prisma.user.deleteMany();

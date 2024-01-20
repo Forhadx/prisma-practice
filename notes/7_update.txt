@@ -1,0 +1,94 @@
+# udpate
+
+
+
+# update - single update
+
+      await prisma.user.update({
+          where: {
+            email: "john@example.com",
+          },
+          data: {
+            name: "John 1",
+          },
+      });
+
+# update  many
+
+      await prisma.user.updateMany({
+          where: {
+            age: {$gt: 10}
+          },
+          data: {
+            name: "John 1",
+          },
+      });
+
+  
+
+# increment, decrement, multiply, divide
+
+   await prisma.user.update({
+          where: {
+            email: "john@example.com",
+          },
+          data: {
+            age: {
+              increment: 1  // increment, decrement, multiply, divide
+            }
+          },
+      });
+
+
+# connect, disconnect := another table
+
+    - user, userPreference, table is linked
+    - but user have no userPreference
+
+    how to manage
+    
+    - create both separate tables and connect by : update
+    - create userPreference then connect with during user create: alternative works
+    - disconnect same way
+
+
+  ** do with update
+    step: 1
+      // create a user preferences without user.
+       await prisma.userPreference.create({
+          data: {
+            emailUpdates: true
+          }
+        })
+        // op: { id: '851ce957-e48f-4da6-ab3d-bc66aaab7141', emailUpdates: true }
+
+
+    step: 2 : connect via update
+      await prisma.user.update({
+        where: {
+          email: "john@example.com",
+        },
+        data: {
+          userPreference: {
+            disconnect: true,
+          },
+        },
+      });
+
+    
+    step: 3 : disconnect
+
+
+  # do during create
+  
+      await prisma.user.create({
+        data: {
+          name: "forhad",
+          email: "forad@example.com",
+          userPreference: {
+            connect: {
+              id: "851ce957-e48f-4da6-ab3d-bc66aaab7141",
+            },
+          },
+        },
+      });

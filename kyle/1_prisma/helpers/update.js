@@ -1,17 +1,25 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const find1 = async () => {
-  const user = await prisma.user.create({ data: { name: "John" } });
-  console.log(user); // { id: 1, name: 'John' }
+const update1 = async () => {
+  const user = await prisma.user.update({
+    where: {
+      email: "john@example.com",
+    },
+    data: {
+      name: "John 1",
+    },
+  });
+
+  console.log(user);
 };
 
-const find = async () => {
-    find1();
-  //   find2();
-  //   find3();
-  //   find4();
-  // findMany1();
+const update = async () => {
+  update1();
+  //   update2();
+  //   update3();
+  //   update4();
+  // updateMany1();
 };
 
-module.exports = find;
+module.exports = update;

@@ -3,6 +3,7 @@ const app = express();
 const create = require("./helpers/create");
 const fetch = require("./helpers/fetch");
 const update = require("./helpers/update");
+const deleted = require("./helpers/delete");
 
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
@@ -16,8 +17,11 @@ async function main() {
   //-- fetch Data
   // fetch()
 
-  // update Data
-  update();
+  //--- update Data
+  // update();
+
+  //--- delete data
+  deleted();
 }
 
 main()

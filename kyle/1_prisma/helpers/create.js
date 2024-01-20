@@ -17,6 +17,8 @@ const create2 = async () => {
       User
       UserPreference
     */
+
+  /*
   const user = await prisma.user.create({
     data: {
       name: "John",
@@ -29,6 +31,7 @@ const create2 = async () => {
       },
     },
   });
+  */
   console.log(user);
   /*
   {

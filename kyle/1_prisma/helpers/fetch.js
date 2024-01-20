@@ -51,11 +51,48 @@ const fetch5 = async () => {
 };
 
 const fetch6 = async () => {
-  // paginations
   const user = await prisma.user.findMany({
     where: {
       NOT: {
         name: "John",
+      },
+    },
+  });
+  console.log(user); // [ { id: 1, name: 'John' }, { id: 2, name: 'John' }...]
+};
+
+const fetch7 = async () => {
+  const user = await prisma.user.findMany({
+    where: {
+      userPreference: {
+        emailUpdates: true,
+      },
+    },
+  });
+  console.log(user); // [ { id: 1, name: 'John' }, { id: 2, name: 'John' }...]
+};
+
+const fetch8 = async () => {
+  const user = await prisma.user.findMany({
+    where: {
+      writtenPosts: {
+        // every, none, some
+        every: {
+          rating: 1,
+        },
+      },
+    },
+  });
+  console.log(user); // [ { id: 1, name: 'John' }, { id: 2, name: 'John' }...]
+};
+
+const fetch9 = async () => {
+  const user = await prisma.post.findMany({
+    where: {
+      author: {
+        is: {
+          name: "kyle",
+        },
       },
     },
   });
@@ -68,7 +105,10 @@ const fetch = async () => {
   // fetch3();
   // fetch4();
   // fetch5();
-  fetch6();
+  // fetch6();
+  // fetch7();
+  // fetch8();
+  fetch9();
 };
 
 module.exports = fetch;

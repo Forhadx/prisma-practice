@@ -1,0 +1,51 @@
+*** for nested/join tables **
+
+
+## find  nested elements
+
+
+        await prisma.user.findMany({
+            where: {
+                userPreference: {
+                    emailUpdates: true,
+                },
+            },
+        });
+
+
+### every, none, some
+
+            await prisma.user.findMany({
+                where: {
+                    writtenPosts: {
+                        every: {            // every, none, some
+                            rating: 1
+                        },
+                    },
+                },
+            });
+
+
+
+            every: return all user. though there is no post of any user bt return all user
+            none: give same result
+            some: return [] empty cause match nothing
+
+
+
+
+## is, isNot
+
+        await prisma.post.findMany({
+            where: {
+                author: {
+                    is: {           // is, isNot
+                        name: "kyle",
+                    },
+                },
+            },
+        });
+
+        // is: is exist then return data
+        // isNot: is exist then return data without matching the result
+        
